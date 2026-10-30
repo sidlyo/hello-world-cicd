@@ -1,10 +1,10 @@
+
 name: Hello World CI-CD Pipeline
 
 on:
   push:
     branches:
       - main
-
   pull_request:
     branches:
       - main
@@ -44,4 +44,3 @@ jobs:
           name: hello-world-package
           path: hello-world.zip
           if-no-files-found: error
-
