@@ -1,46 +1,14 @@
 
-name: Hello World CI-CD Pipeline
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+import unittest
+from app import get_message
 
-permissions:
-  contents: read
 
-jobs:
-  build-test-package:
-    runs-on: ubuntu-latest
+class TestHelloWorld(unittest.TestCase):
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    def test_hello_world(self):
+        self.assertEqual(get_message(), "Hello, World!")
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
 
-      - name: Run Hello World application
-        run: python app.py
-
-      - name: Run automated tests
-        run: python -m unittest -v
-
-      - name: Package application
-        run: |
-          mkdir -p dist
-          cp app.py test_app.py dist/
-          cd dist
-          zip -r ../hello-world.zip app.py test_app.py
-
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: hello-world-package
-          path: hello-world.zip
-          if-no-files-found: error
+if __name__ == "__main__":
+    unittest.main()
