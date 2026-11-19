@@ -1,6 +1,6 @@
 # Feature update for Exercise 9
 def hello_world():
-    return "Hello, DevOps!"
+    return "Hello, Wrong!"
 
 def welcome_message(name):
     return f"Welcome to DevOps, {name}!"
